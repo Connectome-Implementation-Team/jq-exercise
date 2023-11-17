@@ -12,6 +12,7 @@ Helpful resources:
 [Search](https://docs.openalex.org/api-entities/works/search-works) some publications using the OpenAlex Rest API.
 Use the [paging](https://docs.openalex.org/how-to-use-the-api/get-lists-of-entities/paging) mechanism to fetch several pages of results and store them in separate JSON files.
 Now use `jq` to combine these single files into **one** collection of publications.
+From the resulting collection make a summary of all publications (title, DOI etc.)
 
 Hint: It is like drinking a milk shake making quite some noise.
 
