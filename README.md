@@ -16,6 +16,8 @@ From the resulting collection make a summary of all publications (title, DOI etc
 
 Hint: It is like drinking a milk shake making quite some noise.
 
+`jq -s '. | map(.results) | flatten | map(.doi) ' 1.json 2.json`
+
 ## Generate a CSV Report From a REST API's JSON response (credits: Marcel)
 
 Given a [news feed API call](https://feed-prod.unitycms.io/2/newest?count=50), transform the JSON response to a tabular structure and include only articles.
@@ -23,6 +25,8 @@ Each article should be described by its title, abstract, and URL.
 The table's first row should indicate the column names.
 
 Hint: The required format is quite common in the Excel world.
+
+`cat res.json | jq -r '["Date","Type", "Category", "Title", "Lead", "Text", "URL"], (.content.elements[]|select(.type=="articles")|[.content.published,.content.paywall.docType,.content.mainCategoryName,.content.titleHeader,.content.title,.content.lead,.content.url])|@tsv'`
 
 ## Get Selected Properties from a Wikidata Entity
 
