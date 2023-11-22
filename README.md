@@ -35,3 +35,12 @@ Feel free to choose another entity from Wikidata :-)
 
 Hint: Wikidata properties are documented [here](https://www.wikidata.org/wiki/Wikidata:Database_reports/List_of_properties/all).
 
+This extracts just the latitude and longitude:
+
+```
+curl -s 'https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q78&format=json' \
+  | jq '.entities[].claims["P625"][] | select (.type == "statement") |
+  .mainsnak | select (.datatype == "globe-coordinate") |
+  .datavalue.value |
+  { "lat": .latitude, "long": .longitude }'
+```
